@@ -1,0 +1,345 @@
+<div id="component-body" class="container" *ngIf="dataIsLoaded === true">
+  <ngx-flash-messages></ngx-flash-messages>
+  <form *ngIf="compareIds()" #edit="ngForm" (ngSubmit)="upload(edit.value, edit.valid)" novalidate>
+    <wizard>
+      <wizard-step title="Location">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="form-container-add">
+              <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control f-icon" type="text" name="name" [(ngModel)]="home.name" placeholder="Name" required  #name="ngModel"/>
+                    <span class="input-group-addon">
+                      <i class="fa fa-home" aria-hidden="true"></i>
+                    </span>
+                  </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control f-icon" type="text" name="country" [(ngModel)]="home.country" placeholder="Country" required #country="ngModel" />
+                    <span class="input-group-addon">
+                      <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                    </span>
+                  </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control f-icon" type="text" name="city" [(ngModel)]="home.city" placeholder="City" required  #city="ngModel" />
+                    <span class="input-group-addon">
+                      <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                    </span>
+                  </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control f-icon" type="text" name="address" [(ngModel)]="home.address" placeholder="Address" required #address="ngModel" />
+                    <span class="input-group-addon">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </span>
+                  </div>
+              </div>
+               <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control f-icon" type="text" name="zip_code" [(ngModel)]="home.zip_code" placeholder="Postal Code" required  #zip_code="ngModel" />
+                    <span class="input-group-addon">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </span>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div  style="text-align: center">
+          <button class="btn btn-primary previous-btn" type="button" disabled previousStep>Previous</button>
+          <button [disabled]="name.invalid || country.invalid || city.invalid || address.invalid || zip_code.invalid" class="btn btn-primary previous-btn" type="button" nextStep>Next</button>
+        </div>
+      </wizard-step>
+      <wizard-step title="Details">
+        
+        <div class="container-fluid">
+          <div class="row">
+            <div class="form-container-add">
+              <div class="form-group">
+                <p>Home Type:</p>
+                <span id="radio1" class="radio-group">
+                   <i class="fa fa-home"></i>
+                  <label class="for-radio" for="entire-home">Entire Home</label>
+                  <input type="radio" name="room_type" [(ngModel)]="home.room_type" id="entire-home" value="entire-home" required #roomType="ngModel">
+                </span>
+                <span id="radio2" class="radio-group">
+                  <i class="fa fa-bed"></i>
+                  <label class="for-radio" for="private-room">Private Room</label>
+                  <input type="radio" name="room_type" [(ngModel)]="home.room_type" id="private-room" value="private-room" required #roomType="ngModel">
+                </span>
+                <span class="radio-group">
+                  <i class="fa fa-users"></i>
+                  <label class="for-radio" for="shared-room">Shared Room</label>
+                  <input type="radio" name="room_type" [(ngModel)]="home.room_type" id="shared-room" value="shared-room" required #roomType="ngModel">
+                </span>
+              </div>
+              <div class="form-group details-group row">
+                <label class="col-sm-4 detail-label" for="bedrooms"><i class="fa fa-bed" aria-hidden="true"></i> Bedrooms:</label>
+                <div class="col-lg-3 col-sm-1"></div>
+                <input class="form-control number-input" type="number" step="1" min="0" name="bedrooms" [(ngModel)]="home.bedrooms" required #bedrooms="ngModel">
+              </div>
+              <div class="form-group details-group row">
+                <label class="col-sm-4 detail-label" for="beds"><i class="fa fa-bed" aria-hidden="true"></i> Beds:</label>
+                <div class="col-lg-3 col-sm-1"></div>
+                <input class="form-control number-input" type="number" step="1" min="0" name="beds" [(ngModel)]="home.beds" required #beds="ngModel">
+              </div>
+               <div class="form-group details-group row">
+                <label class="col-sm-4 detail-label" for="bathrooms"><i class="fa fa-bath" aria-hidden="true"></i> Bathrooms:</label>
+                <div class="col-lg-3 col-sm-1"></div>
+                <input class="form-control number-input" type="number" step="1" min="0" name="bathrooms" [(ngModel)]="home.bathrooms" required #bathrooms="ngModel">
+              </div>
+              <div class="form-group details-group row">
+                <label class="col-sm-4 detail-label" for="sq_meters"><i class="fa fa-square-o" aria-hidden="true"></i> Square Meters:</label>
+                <div class="col-lg-3 col-sm-1"></div>
+                <input class="form-control number-input" type="number" step="0.01" min="0" name="sq_meters" [(ngModel)]="home.sq_meters" required #sqMeters="ngModel">
+              </div>
+              <div class="form-group details-group row">
+                <label class="col-sm-4 detail-label" for="sq_meters"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> Min Days:</label>
+                <div class="col-lg-3 col-sm-1"></div>
+                <input class="form-control number-input" type="number" step="1" min="1" name="min_days" [(ngModel)]="home.min_days" required #minDays="ngModel">
+              </div>
+               <div class="form-group details-group row">
+                <label class="col-sm-4 detail-label" for="guests"><i class="fa fa-users" aria-hidden="true"></i> Guests:</label>
+                <div class="col-lg-3 col-sm-1"></div>
+                <input class="form-control number-input" type="number" step="1" min="1" name="guests" [(ngModel)]="home.guests" required #guests="ngModel">
+              </div>
+              <div class="form-group details-group row">
+                <label class="col-sm-4 detail-label" for="sq_meters"><i class="fa fa-credit-card" aria-hidden="true"></i> Cost Per Day:</label>
+                <div class="col-lg-3 col-sm-1"></div>
+                <input class="form-control number-input" type="number" step="0.01" min="0" name="cost_per_day" [(ngModel)]="home.cost_per_day" required #costPerDay="ngModel">
+              </div>
+              <div class="form-group details-group row">
+                <label class="col-sm-4 detail-label" for="sq_meters"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> Min Date:</label>
+                <div class="col-lg-3 col-sm-1"></div>
+                <input mdInput class="form-control date-input date-input mr-sm-2" name="startDate" [ngModel]="home.startDate" #start="ngModel" [mdDatepicker]="myDatepicker1"  required>
+                <md-datepicker-toggle class="custom-toggle" [for]="myDatepicker1"></md-datepicker-toggle>
+               <md-datepicker #myDatepicker1></md-datepicker>
+                </div>
+                <div class="form-group details-group row">
+                <label class="col-sm-4 detail-label" for="sq_meters"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Max Date:</label>
+                <div class="col-lg-3 col-sm-1"></div>
+                <input mdInput class="form-control date-input date-input mr-sm-2" name="endDate" [ngModel]="home.endDate"
+                #end="ngModel" [mdDatepicker]="myDatepicker2"  required>
+                <md-datepicker-toggle class="custom-toggle" [for]="myDatepicker2"></md-datepicker-toggle>
+               <md-datepicker #myDatepicker2></md-datepicker>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center ; padding-bottom: 40px;">
+          <button class="btn btn-primary previous-btn" type="button" previousStep>Previous</button>
+          <button type="button" [disabled]="roomType.invalid || bedrooms.invalid || beds.invalid || bathrooms.invalid || sqMeters.invalid || minDays.invalid || guests.invalid || costPerDay.invalid" class="btn btn-primary next-btn" nextStep>Next</button>
+        </div>
+      </wizard-step>
+      <wizard-step title="Amenities">
+
+
+        <div class="container-fluid" style="margin-top: 30px;">
+          <div class="row">
+            <div class="form-container-add">
+            <!-- <input type="checkbox" id="switch" /><label for="switch">Toggle</label> -->
+            <div class="row">
+              <div class="col-xl-6 col-lg-12">
+                <div class="row check-group">
+                  <label class="col-sm-8" for="internet"><i class="fa fa-wifi" aria-hidden="true"></i> Internet</label>
+                  <div class="col-sm-2"></div>
+                  <label class="switch">
+                    <input id="internet" type="checkbox" name="internet" [(ngModel)]="home.internet"  value="internet">
+                    <span class="slider round"></span>
+                  </label>
+               </div>
+            </div>
+              <div class="col-xl-6 col-lg-12">
+                <div class="row check-group">
+                  <label class="col-sm-8" for="lift"><i class="fa fa-arrow-up" aria-hidden="true"></i> Lift</label>
+                  <div class="col-sm-2"></div>
+                  <label class="switch">
+                    <input id="lift" type="checkbox" name="lift" [(ngModel)]="home.lift" value="lift">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+          
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-12">
+                <div class="row check-group">
+                  <label class="col-sm-8" for="air-condition"><i class="fa fa-snowflake-o" aria-hidden="true"></i> Air-conditioning</label>
+                  <div class="col-sm-2"></div>
+                  <label class="switch">
+                    <input id="air-condition" type="checkbox" name="air_condition" [(ngModel)]="home.air_condition" value="air_condition">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-12">
+                <div class="row check-group">
+                   <label class="col-sm-8" for="parking"><i class="fa fa-car" aria-hidden="true"></i> Parking</label>
+                    <div class="col-sm-2"></div>
+                    <label class="switch">
+                      <input id="parking" type="checkbox" name="parking" [(ngModel)]="home.parking" value="parking">
+                      <span class="slider round"></span>
+                    </label>
+                </div>
+               
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-12">
+                <div class="row check-group">
+                  <label class="col-sm-8" for="heating"><i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i> Heating</label>
+                  <div class="col-sm-2"></div>
+                  <label class="switch">
+                  <input id="heating" type="checkbox" name="heating" [(ngModel)]="home.heating" value="heating">
+                  <span class="slider round"></span>
+                </label>
+                </div>
+                
+              </div>
+              <div class="col-xl-6 col-lg-12">
+                <div class="row check-group">
+                  <label class="col-sm-8" for="television"><i class="fa fa-television"></i> TV</label>
+                  <div class="col-sm-2"></div>
+                  <label class="switch">
+                    <input id="television" type="checkbox" name="television" [(ngModel)]="home.television" value="television">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-12">
+                <div class="row check-group">
+                  <label class="col-sm-8" for="kitchen"><i style="display: inline-block; font-size: 20px;" class="material-icons">kitchen</i> Kitchen</label>
+                  <div class="col-sm-2"></div>
+                  <label class="switch">
+                    <input id="kitchen" type="checkbox" name="kitchen" [(ngModel)]="home.kitchen"  value="kitchen">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                
+              </div>
+              <div class="col-xl-6 col-lg-12">
+                <div class="row check-group">
+                  <label class="col-sm-8" for="living-room"><i class="fa fa-television" aria-hidden="true"></i> Living Room</label>
+                  <div class="col-sm-2"></div>
+                  <label class="switch">
+                    <input id="living-room" type="checkbox" name="living_room" [(ngModel)]="home.living_room" value="living_room">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-12">
+                <div class="row check-group">
+                   <label class="col-sm-8" for="pets"><i class="fa fa-paw" aria-hidden="true"></i> Pets</label>
+                   <div class="col-sm-2"></div>
+                    <label class="switch">
+                      <input id="pets" type="checkbox" name="pets" [(ngModel)]="home.pets" value="pets">
+                      <span class="slider round"></span>
+                    </label>
+                </div>
+               
+              </div>
+              <div class="col-xl-6 col-lg-12">
+                <div class="row check-group">
+                  <label class="col-sm-8" for="smoking"><i style="display: inline-block;" class="material-icons">smoking_rooms</i> Smoking</label>
+                  <div class="col-sm-2"></div>
+                  <label class="switch">
+                    <input id="smoking" type="checkbox" name="smoking" [(ngModel)]="home.smoking" value="smoking">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                
+              </div>
+              <div class="row"></div>
+                <div class="col-xl-6 col-lg-12">
+                  <div class="row check-group">
+                    <label class="col-sm-8" for="parties"><i class="fa fa-users"></i> Parties</label>
+                    <div class="col-sm-2"></div>
+                    <label class="switch">
+                      <input id="parties" type="checkbox" name="parties" [(ngModel)]="home.parties" value="parties">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         
+
+
+        <div style="text-align: center ;">
+          <button class="btn btn-primary previous-btn" type="button" previousStep>Previous</button>
+          <button class="btn btn-primary previous-btn" type="button" nextStep>Next</button>
+        </div>
+      </wizard-step>
+
+      <wizard-step title="Photos">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="form-container-add">
+                  <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" /> -->
+                  <h5 style="margin-bottom: 2px;"><i class="fa fa-camera-retro"></i>Add Photos</h5>
+                  <div id="preview">
+                    <img style="height: 100px; width: 100px; opacity: 0.5;" src="https://image.freepik.com/free-icon/picture-frame-with-mountain-image_318-40293.jpg">
+                  </div>
+                  <div style="margin-left: 5%">
+                  <input class="form-control" id="photos" type="file" onchange="previewFiles()" (change)="onFileChange($event)" multiple/>
+                  </div>
+                  <h5 style="margin-top: 10%;"><i class="fa fa-camera-retro"></i>Remove Photos</h5>
+                  <div id="toRemovePrev">
+                    <span><img (click)="remove($event,home.image)" class="my-thumbnail" src={{home.image}}/></span>
+                    <span *ngFor="let picture of home.pictures">
+                      <img (click)="remove($event,picture)"  class="my-thumbnail" src="{{picture}}"/>
+                    </span>
+                  </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center ; padding-bottom: 40px;">
+          <button class="btn btn-primary previous-btn" type="button" previousStep>Previous</button>
+          <button [disabled]="toRemove.length === photoNumber && (files == false)" class="btn btn-primary previous-btn" type="button" nextStep>Next</button>
+        </div>
+ 
+      </wizard-step>
+            <wizard-step title="Description">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="form-container-add">
+                  <h5><i class="fa fa-commenting-o"></i>Description</h5>
+                  <textarea class="form-control" name="description" [(ngModel)]="home.description" placeholder="Few words about the place..."  rows="5" required #description="ngModel"></textarea>
+                  <h5 style="margin-top: 10%;"><i class="fa fa-bus" aria-hidden="true"></i>Neighborhood</h5>
+                  <textarea class="form-control" name="transportation" [(ngModel)]="home.transportation" placeholder="Few words about the neighborhood..."  rows="5" required #transportation="ngModel"></textarea>
+
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center ; padding-bottom: 40px;">
+          <button class="btn btn-primary previous-btn" type="button" previousStep>Previous</button>
+          <button type="submit" [disabled]="description.invalid || transportation.invalid" class="btn btn-primary">Submit</button>
+        </div>
+ 
+      </wizard-step>
+    </wizard>
+  </form>
+  <div *ngIf="!compareIds()" class="container text-center" id="empty">
+  <h4>You do not have access to be here ¯\_(ツ)_/¯</h4>
+  </div>
+</div>
+
+

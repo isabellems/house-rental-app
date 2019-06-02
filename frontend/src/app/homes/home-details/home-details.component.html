@@ -1,0 +1,298 @@
+<div *ngIf="dataIsLoaded == true" class="container" id="fullpage">
+	<ngx-flash-messages></ngx-flash-messages>
+	<h1><strong>{{home.name}}</strong></h1>
+	<div class="row">
+		<div class="col-xl-3 col-sm-12"><h3>{{home.city}},{{home.country}}</h3></div>
+		<div class="col-xl-2 col-sm-12"><h3>{{home.Reviews.length}} reviews</h3></div>
+		
+		<div class="col-xl-2 col-sm-12">
+			<div class="d-inline-block" *ngFor="let i of getAverage()">
+				<i class="fa fa-star fa-2x" aria-hidden="true"></i>
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="row">
+		<div class="col-sm-12">
+			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+			  <div class="carousel-inner" role="listbox">
+			  	 <div class="details-carousel carousel-item active" >
+			      <img class="d-block img-fluid" src="{{home.image}}" alt="First slide">
+			    </div>
+			    <div class="details-carousel carousel-item" *ngFor="let pic of home.pictures">
+			      <img class="d-block img-fluid" src="{{pic}}" alt="First slide">
+			    </div>
+
+			  </div>
+			  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+	  	<div class="col-lg-8 clo-sm-12">
+			<div class="card">
+			  <h5 class="card-header">Description</h5>
+			  <div class="card-block">
+			    <p class="card-text" id="descr_text">{{home.description}}</p>
+			  </div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-xl-12 text-center">
+					<h4><em>The Space</em></h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="d-inline-block col-lg-4 col-md-6 col-sm-12 text-center">
+					<i class="fa fa-home fa-2x" aria-hidden="true"></i>
+					<h5>{{home.room_type}}</h5>
+				</div>
+				<div class="d-inline-block col-lg-4 col-md-6 col-sm-12 text-center">
+					<i class="fa fa-bed fa-2x" aria-hidden="true"></i>
+					<h5>{{home.beds}} Beds</h5>
+				</div>
+				<div class="d-inline-block col-lg-4 col-md-6 col-sm-12 text-center">
+					<i class="fa fa-key fa-2x" aria-hidden="true"></i>
+					<h5>{{home.bedrooms}} Bedrooms</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="d-inline-block col-lg-4 col-md-6 col-sm-12 text-center">
+					<i class="fa fa-square-o fa-2x" aria-hidden="true"></i>
+					<h5>{{home.sq_meters}} Square meters</h5>
+				</div>
+				<div *ngIf="home.living_room" class="d-inline-block col-lg-4 col-md-6 col-sm-12 text-center">
+					<i class="fa fa-users fa-2x" aria-hidden="true"></i>
+					<h5>Living Room</h5>
+				</div>
+				<div *ngIf="!home.living_room" class="d-inline-block col-lg-4 col-md-6 col-sm-12 text-center">
+					<i class="fa fa-users fa-2x" aria-hidden="true"></i>
+					<h5 [ngClass]="'cross-out'">Living Room</h5>
+				</div>
+				<div class="d-inline-block col-lg-4 col-md-6 col-sm-12 text-center">
+					<i class="fa fa-bath fa-2x" aria-hidden="true"></i>
+					<h5>{{home.bathrooms}} Bathrooms</h5>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-xl-12 text-center">
+					<h4><em>House Rules and Amenities</em></h4>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-lg-6 col-sm-12">
+					<h5 *ngIf="home.smoking">Smoking Allowed</h5>
+					<h5 *ngIf="!home.smoking" class="cross-out">Smoking Allowed</h5>
+				</div>
+				<div class="col-lg-6 col-sm-12">
+					<h5 *ngIf="home.pets">Pets Allowed</h5>
+					<h5 *ngIf="!home.pets" class="cross-out">Pets Allowed</h5>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-lg-6 col-sm-12">
+					<h5 *ngIf="home.parties">Parties Allowed</h5>
+					<h5 *ngIf="!home.parties" class="cross-out">Parties Allowed</h5>
+				</div>
+				<div class="col-lg-6 col-sm-12">
+					<h5>Minimum stay: {{home.min_days}} days</h5>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-lg-6 col-sm-12">
+					<h5 *ngIf="home.internet">Wireless Internet</h5>
+					<h5 *ngIf="!home.internet" class="cross-out">Wireless Internet</h5>
+				</div>
+				<div class="col-lg-6 col-sm-12">
+					<h5 *ngIf="home.air_condition">Air Condition</h5>
+					<h5 *ngIf="!home.air_condition" class="cross-out">Air Condition</h5>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-lg-6 col-sm-12">
+					<h5 *ngIf="home.parking">Free Parking</h5>
+					<h5 *ngIf="!home.parking" class="cross-out">Free Parking</h5>
+				</div>
+				<div class="col-lg-6 col-sm-12">
+					<h5 *ngIf="home.lift">Elevator</h5>
+					<h5 *ngIf="!home.lift" class="cross-out">Elevator</h5>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-4 clo-sm-12">
+			<div class="card text-center">
+			  <h5 class="card-header">Book</h5>
+			  <div class="card-block">
+			    <p class="card-text"><strong>{{home.cost_per_day}}$</strong> per night</p>
+		    	<form id="form-reg" #res="ngForm" [ngClass]="{'submitted': submitted}" (ngSubmit)="book(res.value, res.valid)" novalidate>
+			    <div class="row datepick">
+				        <div class="col-sm-12">
+				        	<input mdInput class="text-center" name="arrivalDate" [mdDatepickerFilter]="myFilter" [mdDatepicker]="myDatepicker" [ngModel]="reservation.arrivalDate" placeholder="Arrival" #arrival="ngModel" required>
+							<md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
+							<md-datepicker #myDatepicker></md-datepicker>
+				        </div>
+				    </div>
+				    <div class="row datepick">
+				        <div class="col-sm-12">
+				        	<input mdInput class="text-center" name="departureDate" [mdDatepickerFilter]="myFilter" [mdDatepicker]="myDatepicker2" [ngModel]="reservation.departureDate" placeholder="Departure" #departure="ngModel" required>
+							<md-datepicker-toggle [for]="myDatepicker2"></md-datepicker-toggle>
+							<md-datepicker #myDatepicker2></md-datepicker>
+				        </div>
+				    </div>
+				    <div class="row">
+				    	<div class="col-sm-4 form-group" id="guests">
+						    <label for="guests">Guests</label>
+						    <select class="form-control text" name="guest" [ngModel]="reservation.guests" #guests="ngModel" required>
+						      <option value="1">1</option>
+						      <option value="2">2</option>
+						      <option value="3">3</option>
+						      <option value="4">4</option>
+						      <option value="5">5</option>
+						      <option value="6">6</option>
+						      <option value="7">7</option>
+						      <option value="8">8</option>
+						    </select>
+						  </div>
+			    </div>
+			    <div>
+			    	<button [disabled]="arrival.invalid || departure.invalid || guests.invalid" type="submit" class="btn btn-primary" id="buy_btn">Request Booking</button>
+			  	</div>
+			   </form>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+
+	<hr>
+	<div class="row">
+		<div class="col-sm-12 text-center">
+			<h3>The neighborhood</h3>
+			<p>{{home.transportation}}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<agm-map [latitude]="home.latitude" [longitude]="home.longitude" [zoom]="17">
+			  <agm-marker [latitude]="home.latitude" [longitude]="home.longitude"></agm-marker>
+			</agm-map>
+		</div>
+	</div>
+
+
+	<a href="/users/{{home.Host.id}}" id="userJumbo">
+		<div class="jumbotron">
+			<div class="row">
+				<div class="col-lg-3 col-sm-12">
+					<img src="{{host.image}}" class="rounded-circle">
+				</div>
+				<div class="col-lg-9 col-sm-12 text-center d-inline-block">
+					<h3>{{host.username}}</h3>
+					<p>{{host.description}}</p>
+				</div>
+			</div>
+		</div>
+	</a>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h3 id="tag">Reviews</h3>
+			</div>
+		</div>
+	    <div class="empty" *ngIf="hasNoReviews()">
+             <h5>No reviews yet</h5>
+         </div>
+ 
+       <div *ngIf="!hasNoReviews()">
+			<div  *ngFor="let review of home.Reviews | paginate: { itemsPerPage: 6, currentPage: p1, id: 'rev' }">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="comment-box">
+				            	<h5 class="title">{{review.author.username}}
+				            		<div class="goRight">
+				            			<div class="d-inline-block" *ngFor="let i of showStars(review.rating)">
+											<i class="fa fa-star fa-x blackstar" aria-hidden="true"></i>
+										</div>
+				            		</div>
+				            	</h5>
+				            	{{review.text}}
+				        	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center; margin: 0 auto;">
+		           <pagination-controls class="my-pagination" (pageChange)="p1 = $event" id="rev"></pagination-controls>
+			 </div>
+		</div>
+    </div>
+
+    <div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h3 id="tag">Comment Section</h3>
+			</div>
+		</div>
+		<div class="empty" *ngIf="hasNoComments()">
+              <h5>No comments yet</h5>
+        </div>
+
+        <div *ngIf="!hasNoComments()">
+			<div *ngFor="let comment of home.Comments | paginate: { itemsPerPage: 6, currentPage: p2, id: 'com' }">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="comment-box">
+				            	<h5 *ngIf="comment.author.id == hostId" class="hosttitle">{{comment.author.username}} (Host)
+				            	<span *ngIf="userId == hostId">
+				            		<button (click) = "deleteComment(comment._id)" type="button" class="deletecomm"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+				            	</span>
+				            	</h5>
+				            	<h5 *ngIf="comment.author.id != hostId" class="title">{{comment.author.username}}
+				            	<span *ngIf="comment.author.id == userId || userId == hostId">
+				            		<button (click) = "deleteComment(comment._id)" type="button" class="deletecomm"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+				            	</span>
+				            	</h5>
+				            	{{comment.text}}
+				        	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center; margin: 0 auto;">
+		           <pagination-controls class="my-pagination" (pageChange)="p2 = $event" id="com"></pagination-controls>
+			</div>
+		</div>
+    </div>
+
+
+	<div class="container" id="leavecomm">
+		<h5>Have a Question?</h5>
+		<form class="form-horizontal" role="form" #post="ngForm" [ngClass]="{'submitted': submitted}" (ngSubmit)="onSubmit(post.value, post.valid)" novalidate>
+		    <div class="row">
+	        	<div class="col-md-9">
+	        		<textarea class="form-control" placeholder="Leave a comment..." name="comment" rows="4" [(ngModel)]="commentbody.text"></textarea>
+	        	</div>
+	        	<div class="col-md-2">
+	        		<button (click)="submitted = true" type="submit" class="btn btn-primary btn-block">Post</button>
+	        	</div>
+	        </div>
+	    </form>
+	</div>
+
+
+</div>

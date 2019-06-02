@@ -1,0 +1,123 @@
+body {
+  margin: 80px auto;
+  font-family: 'Raleway', sans-serif;
+}
+
+.img-thumbnail {
+  text-transform: capitalize;
+  margin: 10px auto;
+}
+
+.img-thumbnail img{
+  width: 100%;
+}
+
+select.form-control {
+  padding-right: 25px;
+  background-image: url("data:image/svg+xml,\
+    <svg version='1.1' xmlns='http://www.w3.org/2000/svg' width='14px'\
+         height='14px' viewBox='0 0 1200 1000' fill='rgb(51,51,51)'>\
+      <path d='M1100 411l-198 -199l-353 353l-353 -353l-197 199l551 551z'/>\
+    </svg>");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 7px) 50%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.f-icon {
+  border-right: 0;
+}
+
+.input-group-addon {
+  background-color: white;
+  border-left: 0;
+}
+
+i {
+  opacity: 0.5;
+}
+
+.form-text{
+  margin-top: 0; 
+  margin-bottom: 10px;
+}
+
+.input-group-focus {
+  border-radius:4px;
+  -webkit-transition: box-shadow ease-in-out .15s;
+          transition: box-shadow ease-in-out .15s;
+}
+.input-group-addon {
+  -webkit-transition: border-color ease-in-out .15s;
+          transition: border-color ease-in-out .15s;
+}
+
+:invalid {
+  border-color: none;
+  box-shadow: none;
+}
+
+form.submitted input:invalid {
+  background-color: #fcefef;
+  border-color: #cc0000;
+  box-shadow: none;
+}
+
+form.submitted select:invalid {
+    background-color: #fcefef; 
+    border-color: #cc0000;
+    box-shadow: none;
+}
+
+form.submitted input:invalid + .input-group-addon {
+  background-color: #fcefef !important;
+  border-color: #cc0000 !important;
+}
+
+.input-group-focus: {
+  border-color: #66afe9 !important;
+}
+
+.input-group-focus .input-group-addon {
+  /*border-color: #66afe9 !important;*/
+   border-color: #66afe9 !important;
+}
+
+.input-group-focus:valid .input-group-addon {
+  background-color: white;
+  border-color: #66afe9 !important;
+  border-color: #66afe9 !important;
+}
+
+.btn-primary {
+  border-color: #5C94C5;
+  background-color: #5C94C5 !important;
+}
+
+.bg-light{
+  background-color: white !important;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.form-container{
+    width: 80%; 
+    margin-top: 10px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-preview {
+  height: 400px;
+  width: 100%;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+}

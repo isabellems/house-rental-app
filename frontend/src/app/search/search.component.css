@@ -1,0 +1,102 @@
+@media (min-width: 800px) {
+	.div1 {
+	  display: none;
+	}
+}
+
+@media (max-width: 799px) {
+.div2 {
+  display: none;
+}
+
+}
+
+.form-control{
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
+}
+
+.input-group-addon{
+	 -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
+     border-left: 1px solid rgba(0,0,0,.15);
+     border-right: none;
+}
+
+.input-group-focus {
+  border-radius:4px;
+  -webkit-transition: box-shadow ease-in-out .15s;
+          transition: box-shadow ease-in-out .15s;
+}
+.input-group-addon {
+  -webkit-transition: border-color ease-in-out .15s;
+          transition: border-color ease-in-out .15s;
+}
+
+.input-group-focus {
+  border-color: #5C94C5 !important;
+}
+
+.form-control.mr-sm-2:focus {
+  border-color: #5C94C5 !important;
+}
+
+.input-group-focus .input-group-addon {
+  /*border-color: #66afe9 !important;*/
+   border-color: #5C94C5 !important;
+}
+
+.input-group-focus:valid .input-group-addon {
+  background-color: white;
+  border-color: #5C94C5 !important;
+  border-color: #5C94C5 !important;
+}
+
+
+.w-icon{
+	border-left: none !important;
+}
+
+.div2 .input-group {
+	width: 150px !important;
+}
+
+.div2 .date-group{
+   width: 100px !important;
+}
+
+.div2 .date-input{
+   margin-left: -9px;
+   width: 120px !important;
+}
+
+.div1 .input-group{
+	width: 200px !important;
+}
+
+.div1 .form-control {
+	width: 160px !important;
+}
+
+.form-group .input-group {
+	padding-bottom: 4px;
+}
+
+.div2 .custom-toggle {
+   margin-left: -47px;
+   margin-right: 7px;
+   z-index: 2;
+}
+
+.div1 .custom-toggle {
+  margin-left: -50px;  
+  z-index: 2;
+}
+
+md-datepicker-toggle{
+	opacity: 0.5;
+  /*width: 13px !important;*/
+}
+

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/">
+  <title>fairbnb</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+</head>
+<body>
+
+  <app-root></app-root>
+
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+      function previewFiles() {
+        console.log("hshshshs");
+
+        var preview = document.querySelector('#preview');
+        var files   = document.querySelector('input[type=file]').files;
+        while (preview.firstChild) {
+          preview.removeChild(preview.firstChild);
+        }
+        if(files.length ===  0){
+          resetPrev();
+        }
+
+        function readAndPreview(file) {
+
+          if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+              var image = new Image();
+              image.height = 100;
+              image.width = 100;
+              image.style.margin = "2px";
+              image.style.border = "1px solid rgba(0, 0, 0, 0.2)";
+              image.style.borderRadius = "4px";
+              image.title = file.name;
+              image.src = this.result;
+              preview.appendChild( image );
+            }, false);
+
+            reader.readAsDataURL(file);
+          }
+
+        }
+
+        if (files) {
+          [].forEach.call(files, readAndPreview);
+        }
+
+      }
+
+      function resetPrev() {
+        console.log('shkhhff');
+
+        var preview = document.querySelector('#preview');
+         while (preview.firstChild) {
+          preview.removeChild(preview.firstChild);
+        }
+         var image = new Image();
+            image.height = 100;
+            image.width = 100;
+            image.style.opacity = '0.5';
+            image.src = "https://image.freepik.com/free-icon/picture-frame-with-mountain-image_318-40293.jpg";
+            preview.appendChild( image );
+      }
+
+      function previewFilesProfile() {
+        console.log("hshshshs");
+
+        var preview = document.querySelector('#previewEdit');
+        var files   = document.querySelector('input[type=file]').files;
+        if(files.length ===  0){
+          resetPrevProf();
+        }
+
+        function readAndPreviewProfile(file) {
+
+          resetPrevProf();
+          if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+              var image = new Image();
+              image.height = 260;
+              image.width = 260;
+              image.style.marginTop = "40px";
+              image.style.marginBottom= "20px";
+              image.style.borderRadius = "4px";
+              image.style.opacity = "0.6";
+              image.title = file.name;
+              image.src = this.result;
+              preview.appendChild( image );
+            }, false);
+
+            reader.readAsDataURL(file);
+          }
+
+        }
+
+        if (files) {
+          [].forEach.call(files, readAndPreviewProfile);
+        }
+
+      }
+
+      function resetPrevProf() {
+        var preview = document.querySelector('#previewEdit');
+         while (preview.firstChild) {
+          preview.removeChild(preview.firstChild);
+        }
+      }
+
+    </script>
+   
+ </body>
+</html>

@@ -1,0 +1,460 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+.landing-carousel {
+  height: 100vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.row.display-flex > [class*='col-3'] {
+  display: flex;
+  flex-direction: column;
+}
+
+.img-thumbnail {
+  text-transform: capitalize;
+  margin: 10px auto;
+  /*padding: 0;*/
+}
+
+.img-thumbnail img{
+  width: 100%;
+  padding: 0;
+  max-height: 382px;
+  object-fit: cover;
+}
+
+.thumbnail p, .thumbnail h4 {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+i {
+  opacity: 0.5;
+}
+
+select.form-control {
+  padding-right: 25px;
+  background-image: url("data:image/svg+xml,\
+    <svg version='1.1' xmlns='http://www.w3.org/2000/svg' width='14px'\
+         height='14px' viewBox='0 0 1200 1000' fill='rgb(51,51,51)'>\
+      <path d='M1100 411l-198 -199l-353 353l-353 -353l-197 199l551 551z'/>\
+    </svg>");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 7px) 50%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.f-icon {
+  border-right: 0;
+}
+
+.input-group-addon {
+  background-color: white;
+  border-left: 0;
+}
+
+.form-text{
+  margin-top: 0; 
+  margin-bottom: 10px;
+}
+
+.input-group-focus {
+  border-radius:4px;
+  -webkit-transition: box-shadow ease-in-out .15s;
+          transition: box-shadow ease-in-out .15s;
+}
+.input-group-addon {
+  -webkit-transition: border-color ease-in-out .15s;
+          transition: border-color ease-in-out .15s;
+}
+
+:invalid {
+  border-color: none;
+  box-shadow: none;
+}
+
+form.submitted input:invalid {
+  background-color: #fcefef;
+  border-color: #cc0000;
+  box-shadow: none;
+}
+
+form.submitted select:invalid {
+    background-color: #fcefef; 
+    border-color: #cc0000;
+    box-shadow: none;
+}
+
+form.submitted input:invalid + .input-group-addon {
+  background-color: #fcefef !important;
+  border-color: #cc0000 !important;
+}
+
+form.submitted input.ng-invalid {
+  background-color: #fcefef !important;
+  border-color: #cc0000 !important;
+}
+
+
+form.submitted input.ng-invalid + .input-group-addon {
+  background-color: #fcefef !important;
+  border-color: #cc0000 !important;
+}
+
+
+.error{
+  background-color: #fcefef !important;
+  border-color: #cc0000 !important;
+}
+
+.myalert {
+  color: #cc0000;
+}
+
+.alert i{
+  color: black;
+}
+
+
+.input-group-focus {
+  border-color: #66afe9 !important;
+}
+
+.form-control.mr-sm-2:focus {
+  border-color: #5C94C5 !important;
+}
+
+.input-group-focus .input-group-addon {
+  /*border-color: #66afe9 !important;*/
+   border-color: #66afe9 !important;
+}
+
+.input-group-focus:valid .input-group-addon {
+  background-color: white;
+  border-color: #66afe9 !important;
+  border-color: #66afe9 !important;
+}
+
+.btn-primary {
+  border-color: #5C94C5;
+  background-color: #5C94C5 !important;
+}
+
+.btn.disabled, .btn:disabled {
+    border-color: rgba(92, 148, 197, .65);
+}
+
+.btn-primary:enabled:hover {
+  border-color: #5C94C5;
+  background-color: white !important;
+  color:  #5C94C5;
+  outline: 0 !important;
+}
+
+.bg-light{
+  background-color: white !important;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.form-container{
+    width: 80%; 
+    margin-top: 10px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-container-add{
+    width: 40%; 
+    margin-top: 40px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-preview {
+  height: 500px;
+  width: 100%;
+  background: no-repeat center center scroll;
+  background-position: 50% 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+}
+
+.login-md {
+  margin: 100px auto;
+}
+
+.btn-outline-success {
+  border-color: #5C94C5;
+  color: #5C94C5;
+  outline: 0;
+}
+
+.btn-outline-success:hover {
+  background-color: #5C94C5;
+  border-color: #5C94C5;
+}
+
+.btn-outline-success:focus, .btn-outline-success:active {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  background-color: #5C94C5;
+  border-color: #5C94C5;
+  color: white;
+  outline: 0 !important;
+}
+
+.btn-outline-success:disabled, .btn-outline-success:disabled:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  background-color: white;
+  border-color: rgba(92, 148, 197, 0.5);
+  color: rgba(92, 148, 197, 0.5);
+  outline: 0 !important;
+}
+
+.dataContainer {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.my-pagination .ngx-pagination .current {
+  background: #5C94C5;
+  /*border-radius: 100em;*/
+}
+
+.my-pagination .ngx-pagination {
+  margin-top: 8%;
+}
+
+
+input[type='radio'] {
+  -webkit-appearance:none;
+  -moz-appearance: none;
+  width:14px;
+  height:14px;
+  border:1px solid darkgray;
+  border-radius:50%;
+  outline:none;
+  box-shadow: none;
+  padding: 0;
+}
+
+input[type='radio']:before {
+  content:'';
+  display:block;
+  width:50%;
+  height:50%;
+  margin: 25% 25%;  
+  border-radius:100%;    
+}
+
+input[type='radio']:hover {
+  box-shadow: none;
+}
+
+input[type='radio']:checked {
+  background-color:#5C94C5;
+}
+
+input[type='radio']:checked:before {
+  background: white;
+}
+
+/
+.for-radio {
+  padding-bottom: 100px; 
+}
+
+.radio-group {
+  margin-right: 7px;
+  display: inline-block;
+  padding: 0;
+}
+
+.number-input{
+  margin-left: 15%;
+  display: inline-block;
+  width:70px;
+  height: 40px;
+}
+
+
+.switch {
+  margin-bottom: 0;
+  margin-left: 3%;
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input[type='checkbox']:checked + .slider {
+  background-color: #5C94C5;
+}
+
+input[type='checkbox']:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input[type='checkbox']:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.check-group{
+  /*display: inline-block;*/
+}
+
+.detail-label {
+  display: inline-block;
+}
+
+#photos {
+  text-align: center;
+}
+
+#preview {
+  width: 100%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.thumbnail-anchor, .thumbnail-anchor:hover{
+  color: black;
+  text-decoration: none;
+}
+
+.btn-secondary.dropdown-toggle{
+  background-color: white;
+  border: none;
+  color: #5C94C5;
+}
+
+.btn-secondary.dropdown-toggle:hover, .btn-secondary.dropdown-toggle:focus, .btn-secondary.dropdown-toggle:active{
+  background-color: rgba(0, 0, 0 , 0.1);
+  border: none;
+  box-shadow: none;
+  outline: none;
+  color: #5C94C5;
+}
+
+.show>.btn-secondary.dropdown-toggle {
+   background-color: rgba(0, 0, 0 , 0.1);
+  border: none;
+  box-shadow: none;
+  outline: none;
+  color: #5C94C5;
+}
+
+.nav-link, .nav-link:focus, .nav-link:active {
+  outline: none;
+}
+
+md-datepicker {
+  position: relative !important; 
+  /*z-index: 2000 !important;*/
+}
+
+.cdk-overlay-container {
+ position: fixed;
+z-index: 999999 !important;
+}
+
+.cdk-global-overlay-wrapper {
+  display: flex;
+  position: absolute;
+  z-index: 9999999 !important;
+}
+
+.cdk-overlay-pane {
+ position: absolute;
+ pointer-events: auto;
+ box-sizing: border-box;
+ z-index: 9999999 !important;
+}
+
+.cdk-overlay-backdrop {
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ z-index: 9999999 !important;
+ pointer-events: auto;
+ transition: opacity 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+opacity: 0;
+}
+
+

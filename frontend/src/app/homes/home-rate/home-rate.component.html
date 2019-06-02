@@ -1,0 +1,41 @@
+<div *ngIf="dataIsLoaded == true" class="container">
+	<div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8 personal-info">
+			<h3>How did you like "{{home.name}}"</h3>
+			<form class="form-horizontal" role="form" #rateF="ngForm" [ngClass]="{'submitted': submitted}" (ngSubmit)="submit(rateF.value, rateF.valid)" novalidate>
+				<div class="form-group">
+		            <label class="col-md-3 control-label">Review:</label>
+		              <div class="col-md-8">
+		                <textarea class="form-control" name="review" rows="4" [(ngModel)]="review.text" #review="ngModel"></textarea>
+		              </div>
+					<small class="alert" [hidden]="review.valid || (!rateF.submitted) || (!submitted)">
+				    	Please say a few words about your visit.
+					</small>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Rating:</label>
+					<div class="col-md-2 d-inline-block text-center">
+					  <select class = "form-control" name="rating" [(ngModel)]="review.rating" #rating="ngModel" required>
+	                    <option value="" selected hidden> </option>
+	                    <option value="1">1</option>
+	                    <option value="2">2</option>
+	                    <option value="3">3</option>
+	                    <option value="4">4</option>
+	                    <option value="5">5</option>
+ 	                  </select>
+					</div>
+					<br>
+					<small class="alert" [hidden]="rating.valid || (!rateF.submitted) || (!submitted)">
+						Please leave a rating.
+					</small>
+				</div>
+				<div class="form-group">
+		            <div class="col-sm-4">
+		              <button (click)="submitted = true" [disabled]="review.invalid || rating.invalid" type="submit" class="btn btn-primary btn-block">Save Changes</button>
+		            </div>
+		        </div>
+	        </form>
+		</div>
+	</div>
+</div>

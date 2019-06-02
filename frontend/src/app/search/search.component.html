@@ -1,0 +1,56 @@
+
+<div class="div2">
+	<form class="form-inline" (ngSubmit)="onSubmit(searchForm.value, searchForm.valid)" #searchForm="ngForm">
+		  <div class="input-group">
+		  	  <span class="input-group-addon">
+			       <i class="fa fa-search" aria-hidden="true"></i>
+			   </span> 
+	      	  <input class="form-control mr-sm-2 w-icon" type="text" name="name" [(ngModel)]="query.location" placeholder="Location" #location = "ngModel" required>
+		  </div>
+		  <div style="margin-left: -9px;" id="small" class="input-group">
+		  	 <span class="input-group-addon" id="small-addon">
+			       <i class="fa fa-users" aria-hidden="true"></i>
+			   </span> 
+		  	 <input  class="form-control mr-sm-2 w-icon" type="text" name="guests" [(ngModel)]="query.guests" placeholder="Guests" #guests = "ngModel" required>
+		  </div>
+		    <input mdInput class="form-control date-input mr-sm-2" placeholder="Arrival" name="arrival" [(ngModel)]="query.arrival" [mdDatepicker]="myDatepicker1" #arrival = "ngModel" required>
+			<md-datepicker-toggle  class="custom-toggle" [for]="myDatepicker1"></md-datepicker-toggle>
+			<md-datepicker  #myDatepicker1></md-datepicker>
+			<span *ngIf="arrival.valid">
+				<input mdInput class="form-control date-input mr-sm-2" placeholder="Departure" name="departure" [mdDatepicker]="myDatepicker2" [(ngModel)]="query.departure" required>
+				<md-datepicker-toggle class="custom-toggle" [for]="myDatepicker2"></md-datepicker-toggle>
+				<md-datepicker #myDatepicker2></md-datepicker>
+			</span>
+	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	     
+	</form>
+</div>
+<div class="div1">
+	<form class="form-group" (ngSubmit)="onSubmit(searchForm.value, searchForm.valid)" #searchForm="ngForm">
+	  <div class="input-group">
+	  	  <span class="input-group-addon">
+		       <i class="fa fa-search" aria-hidden="true"></i>
+		   </span> 
+      	  <input class="form-control mr-sm-2 w-icon" type="text" name="name" [(ngModel)]="query.location" placeholder="Location" #location = "ngModel" required>
+	  </div>
+	  <div id="small" class="input-group">
+	  	 <span class="input-group-addon" id="small-addon">
+		       <i class="fa fa-users" aria-hidden="true"></i>
+		   </span> 
+	  	 <input  class="form-control mr-sm-2 w-icon" type="text" name="guests" [(ngModel)]="query.guests" placeholder="Guests" #guests = "ngModel" required>
+	  </div>
+	  <div class="input-group date-group">
+	    <input mdInput class="form-control date-input mr-sm-2" [mdDatepicker]="myDatepicker3" placeholder="Arrival" name="arrival" [(ngModel)]="query.arrival" #arrival1 = "ngModel" required>
+		<md-datepicker-toggle  class="custom-toggle" [for]="myDatepicker3"></md-datepicker-toggle>
+		<md-datepicker #myDatepicker3></md-datepicker>
+	  </div>
+	  <div *ngIf="arrival.valid" class="input-group date-group">
+		<input mdInput class="form-control date-input mr-sm-2" [mdDatepicker]="myDatepicker4"  placeholder="Departure" name="departure" [(ngModel)]="query.departure" #departure1 = "ngModel" required>
+		<md-datepicker-toggle class="custom-toggle" [for]="myDatepicker4"></md-datepicker-toggle>
+		<md-datepicker #myDatepicker4></md-datepicker>
+	  </div>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+     
+	</form>
+</div>
+

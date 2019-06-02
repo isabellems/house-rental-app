@@ -1,0 +1,78 @@
+<div *ngIf="compareIds()" class="container">
+  <div *ngIf="dataIsLoaded === true" class="container">
+    <h1>Edit Profile</h1>
+  	<hr>
+    <form class="form-horizontal" role="form" #edit="ngForm" [ngClass]="{'submitted': submitted}" (ngSubmit)="onSubmit(edit.value, edit.valid)" novalidate>
+	  <div class="row">
+      <div class="col-md-3">
+        <div class="text-center"> 
+         <span id="previewEdit"></span>        
+          <img *ngIf="!files" src="{{user.image}}" class="avatar rounded" alt="avatar">
+          
+          <input class="form-control" type="file" id="photo" type="file" onchange="previewFilesProfile()" (change)="onFileChange($event)"/>
+        </div>
+      </div>
+      
+      <div class="col-md-9 personal-info">
+        <h3>Personal info</h3>
+        
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="firstname" [(ngModel)]="user.firstname" required #firstname="ngModel">
+            </div>
+            <small class="myalert" [hidden]="firstname.valid || (!edit.submitted) || (!submitted)">
+              First name is required.
+            </small>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="lastname" [(ngModel)]="user.lastname" required #lastname="ngModel">
+            </div>
+            <small class="myalert" [hidden]="lastname.valid || (!edit.submitted) || (!submitted)">
+              Last name is required.
+            </small>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">City:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="city" type="text" [(ngModel)]="user.city" #city="ngModel">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Country:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="country" type="text" [(ngModel)]="user.country" #country="ngModel">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Telephone:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="phone" type="tel" [(ngModel)]="user.phone" #phone="ngModel">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Description:</label>
+              <div class="col-md-8">
+                <textarea class="form-control" name="description" rows="4" [(ngModel)]="user.description"></textarea>
+              </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-sm-4">
+              <a class="btn btn-warning btn-block" href="/users/{{id}}/edit/change.password" role="submit">Change Password</a>
+            </div>
+            <div class="col-sm-4">
+              <button (click)="submitted = true" type="submit" class="btn btn-primary btn-block">Save Changes</button>
+            </div>
+          </div>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="!compareIds()" class="container text-center" id="empty">
+  <h4>You do not have access to be here ¯\_(ツ)_/¯</h4>
+</div>

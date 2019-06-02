@@ -1,0 +1,53 @@
+{
+  "name": "hamming-lsh",
+  "version": "0.0.0",
+  "description": "An implementation of locality-sensitive hashing for Hamming space",
+  "license": "MIT",
+  "repository": "kasperisager/hamming-lsh",
+  "author": "Kasper Kronborg Isager <kasperisager@gmail.com>",
+  "scripts": {
+    "test": "xo && nyc ava",
+    "transpile": "babel lib -d dist",
+    "prepublish": "npm run transpile"
+  },
+  "main": "dist/index.js",
+  "jsnext:main": "lib/index.js",
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "keywords": [
+    "hamming",
+    "distance",
+    "lsh",
+    "locality",
+    "sensitive",
+    "hashing"
+  ],
+  "devDependencies": {
+    "ava": "^0.14.0",
+    "babel-cli": "^6.6.5",
+    "babel-preset-es2015": "^6.6.0",
+    "nyc": "^5.6.0",
+    "xo": "^0.13.0"
+  },
+  "ava": {
+    "verbose": true,
+    "require": [
+      "babel-core/register"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "xo": {
+    "space": true,
+    "exnext": true,
+    "rules": {
+      "new-cap": 0
+    }
+  },
+  "dependencies": {}
+}

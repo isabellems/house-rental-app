@@ -1,0 +1,120 @@
+<div *ngIf="dataIsLoaded === true">
+<div *ngIf="user.admin == true" class="body-container">
+	<ul class="nav nav-tabs">
+	  	<li class="nav-item">
+	    	<a class="nav-link active" data-toggle="tab" href="#all" role="tab">Users</a>
+	  	</li>
+	  	<li class="nav-item">
+	   	    <a class="nav-link" data-toggle="tab" href="#host" role="tab">Host Requests</a>
+	     </li>
+	     <li class="nav-item">
+	   	    <a class="nav-link" data-toggle="tab" href="#files" role="tab">Files</a>
+	     </li>
+	 </ul>
+
+	<div class="tab-content">
+	  <div class="tab-pane active" id="all" role="tabpanel">
+	  	<div class="container">
+	  		<div class="row text-center display-flex"  id="campground-grid">
+				<div class="col-lg-6 col-md-12" *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p1, id: 'a' }">
+					<div class="card">
+					  <div class="card-block">
+					  	<div class="row display-flex">
+					  	   <div class="col-md-3 col-4">
+					  	   	 <a href="users/{{user._id}}"><img src="{{user.image}}" class="float-left"></a>
+					  	   </div>
+					  	   <div class="col-8">
+					  	   	 <div class="card-container">
+					  	   	 	<a href="users/{{user._id}}">
+						  	   	    <h5>{{user.username}}</h5>
+						  	   	    <p>{{user.email}}</p>
+						  	   	    <p>
+						  	   	    	<span> {{user.firstname}} {{user.lastname}}</span>
+						  	   	    	<span class="date-span">{{user.day}} {{user.month | slice: 0 : 3}} {{user.year}} </span>
+						  	   	    </p>
+					  	   	 	</a>	
+					  	   	 </div>
+					  	   </div>
+					  	</div>
+					  </div>
+					</div>
+					
+				</div>
+				<div class="empty" *ngIf="!users || hasNoUsers()">
+                   <h4>No users to display</h4>
+               </div>
+			</div>	
+			<div style="text-align: center">
+				<pagination-controls class="my-pagination" (pageChange)="p1 = $event" id="a"></pagination-controls>
+			</div>
+	  	</div>
+	  </div>
+
+  <div class="tab-pane" id="host" role="tabpanel">
+  	<div class="container">
+  		<div class="tab-content">
+	  	<div class="container">
+	  		<div class="row text-center display-flex"  id="campground-grid">
+				<div class="col-lg-6 col-md-12" *ngFor="let user of hostUsers | paginate: { itemsPerPage: 10, currentPage: p1, id: 'h'} ">
+					<div *ngIf="user === -1" id="empty">
+						<h4>No matches</h4>
+					</div>
+					<div [ngClass]="{'hidden': user.hidden}" class="card">
+					  <div class="card-block">
+					  	<div class="row display-flex">
+					  	   <div class="col-md-3 col-4">
+					  	   	 <a href="users/{{user._id}}"><img src="{{user.image}}" class="float-left"></a>
+					  	   </div>
+					  	   <div class="col-8">
+					  	   	 <div class="card-container">
+					  	   	 	<a href="users/{{user._id}}">
+						  	   	    <h5>{{user.username}}</h5>
+						  	   	    <div>
+						  	   	    	<div>{{user.email}}</div>
+						  	   	    	<span> {{user.firstname}} {{user.lastname}}</span>
+						  	   	    	<span class="date-span">{{user.day}} {{user.month | slice: 0 : 3}} {{user.year}} </span>
+						  	   	    </div>
+					  	   	 	</a>	
+					  	   	 	<button (click)="decline(user._id); user.hidden = !user.hidden;" class="btn btn-danger btn-sm">Decline</button>
+					  	   	 	<button (click)="accept(user._id); user.hidden = !user.hidden;" class="btn btn-primary btn-sm">Accept</button>
+					  	   	 </div>
+					  	   </div>
+					  	</div>
+					  </div>
+					</div>
+					
+				</div>
+				<div class="empty" *ngIf="!hostUsers || hasNoHostUsers()">
+                   <h4>No users to display</h4>
+               </div>
+			</div>	
+	  	</div>
+  	</div>
+	  	<div style="text-align: center">
+		  <pagination-controls class="my-pagination" (pageChange)="p2 = $event" id="h"></pagination-controls>
+	   </div>
+  </div>
+ </div>
+
+   <div class="tab-pane" id="files" role="tabpanel">
+  	  <div class="tab-content">
+	    	<div class="container">
+	    		<div class="row justify-content-center">
+	    			<div style="margin-top: 10px;" class="col-md-3 col-sm-12">
+	  					<button (click)="downloadUsers()"  class="btn btn-primary">Download Users</button>	
+	    			</div>
+	    			<div style="margin-top: 10px;" class="col-md-3 col-sm-12">
+	  		            <button (click)="downloadHomes()" class="btn btn-primary">Download Homes</button>	
+	    			</div>
+	    		</div>
+	    	</div>
+	  </div>
+  </div>
+</div>
+</div>
+
+<div *ngIf="user.admin === false" class="container text-center" id="empty">
+  <h4>You do not have access to be here ¯\_(ツ)_/¯</h4>
+</div>
+
+</div>

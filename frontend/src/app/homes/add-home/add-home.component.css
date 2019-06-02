@@ -1,0 +1,21 @@
+#component-body {
+	margin-top : 100px;
+}
+
+.date-input {
+
+  border: none;
+  border-bottom : 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  margin-left: 30px;
+  display: inline-block;
+  width: 130px;
+  height: 40px;
+}
+
+.custom-toggle {
+	margin-left: -50px;
+	z-index: 4;
+}
+
+

@@ -1,0 +1,163 @@
+<div class="container">
+	<div class="container fixed-top" id="fixed-bar">
+		<div class="container" id="fixed-container">
+			<div class="row" >
+				<div class="dropdown pull-left list-item">
+				  <button class="btn btn-secondary dropdown-toggle hometype-drop" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    Room Type
+				  </button>
+				  <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+				    <div class="radio-group-drop">
+				    	<label for="entire-home"><i class="fa fa-home"></i>Entire Home</label>
+				    	<input  type="radio" name="home-type" id="entire-home" value="entire-home" [(ngModel)]="filter.room_type">
+				    </div>
+				    <div class="radio-group-drop">
+				    	<label for="entire-home"><i class="fa fa-bed"></i>Private Room</label>
+				        <input type="radio" name="home-type" id="private-room" value="private-room" [(ngModel)]="filter.room_type">
+				    </div>
+				    <div class="radio-group-drop">
+				       <label for="entire-home"><i class="fa fa-users"></i>Shared Room</label>
+				       <input type="radio" name="home-type"  id="shared-room" value="shared-room" [(ngModel)]="filter.room_type">
+				    </div> 
+				    <button class="drop-cancel" (click)="cancelRoomTypeFilter()">Cancel</button>
+				  </div>
+				</div>
+				<div class="dropdown pull-left list-item">
+				  <button class="btn btn-secondary dropdown-toggle price-drop" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				   Price
+				  </button>
+				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				    <div class="form-group" id="form-group-drop">
+				    	<label for="max-price"><i class="fa fa-credit"></i>Max Price:</label>
+				    	<input class="form-control number-input-drop" type="number" name="home-type" placeholder="$" min="0" step="0.01" id="max-price" [(ngModel)]="filter.cost_per_day">
+				    </div>   
+				    <button class="drop-cancel" (click)="cancelPriceFilter()">Cancel</button>
+				  </div>
+				</div>
+				<div class="dropdown pull-left list-item">
+				  <button class="btn btn-secondary dropdown-toggle amenities-drop" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				   Amenities
+				  </button>
+				  <div class="dropdown-menu" id="amenities-drop" aria-labelledby="dropdownMenuButton">
+				    <div>
+				      <div class="row">
+					    <label class="col-sm-8" for="internet"><i class="fa fa-wifi" aria-hidden="true"></i> Internet</label>
+			            <div class="col-sm-1"></div>
+				        <label class="switch">
+			               <input id="internet" type="checkbox" name="internet"  value="internet" [(ngModel)]="filter.internet">
+			               <span class="slider round"></span>
+				        </label>
+				      </div>
+			          <div class="row">
+			          	<label class="col-sm-8" for="air-condition"><i class="fa fa-snowflake-o" aria-hidden="true"></i> Air-conditioning</label>
+			            <div class="col-sm-1"></div>
+			  		  	<label class="switch">
+				        	<input id="air-condition" type="checkbox" name="air_condition" value="air_condition" [(ngModel)]="filter.air_condition">
+				        	<span class="slider round"></span>
+			          </label>
+			          </div>
+			          <div class="row">
+			          	<label class="col-sm-8" for="heating"><i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i> Heating</label>
+			            <div class="col-sm-1"></div>
+			          	<label class="switch">
+			            	<input id="heating" type="checkbox" name="heating" value="heating" [(ngModel)]="filter.heating">
+			            	<span class="slider round"></span>
+			          </label>
+			          </div>
+			          <div class="row">
+			          	<label class="col-sm-8" for="kitchen"><i style="display: inline-block; font-size: 20px;" class="material-icons">kitchen</i> Kitchen</label>
+			            <div class="col-sm-1"></div>
+					   	<label class="switch">
+			            	<input id="kitchen" type="checkbox" name="kitchen" value="kitchen" [(ngModel)]="filter.kitchen">
+			            	<span class="slider round"></span>
+			          </label>
+			          </div>
+			          <div class="row">
+			          	<label class="col-sm-8" for="television"><i class="fa fa-television"></i> TV</label>
+			              <div class="col-sm-1"></div>
+						  <label class="switch">
+				            <input id="television" type="checkbox" name="television" value="television" [(ngModel)]="filter.television">
+				            <span class="slider round"></span>
+			             </label>	
+			          </div>
+			          <div class="row">
+			          	<label class="col-sm-8" for="parking"><i class="fa fa-car" aria-hidden="true"></i> Parking</label>
+			             <div class="col-sm-1"></div>
+			            <label class="switch">
+			              <input id="parking" type="checkbox" name="parking" value="parking" [(ngModel)]="filter.parking">
+			              <span class="slider round"></span>
+			            </label>
+			          </div>
+			          <div class="row">
+			          	<label class="col-sm-8" for="lift"><i class="fa fa-arrow-up" aria-hidden="true"></i> Lift</label>
+			              <div class="col-sm-1"></div>
+			              <label class="switch">
+			                <input id="lift" type="checkbox" name="lift" value="lift" [(ngModel)]="filter.lift">
+			                <span class="slider round"></span>
+			              </label>
+			          </div>
+			          <button class="drop-cancel" id="checkbox-cancel" (click)="cancelAmenitiesFilter()">Cancel</button>
+		           </div>  
+			   </div>
+			</div>
+		 </div>
+	  </div>
+	</div>
+
+	<div id="component-body">
+	 
+		<div *ngIf="user" id="recommended" class="container rounded" [hidden]="hidden">
+			<div class="row">
+				<div class="col-5">
+					<h4>Recommended</h4>
+				</div>
+				<div class="col-6"></div>
+				<div class="col-1">
+		            <button class="delete" (click)="hidden =!hidden"><i class="fa fa-times fa-x d-inline" aria-hidden="true"></i></button>
+				</div>
+			</div>
+			<div *ngIf="user" class="row text-center display-flex"  id="campground-grid">
+				<div class="col-lg-6 col-md-6 col-sm-6" *ngFor="let home of user.recommended ">
+					<a href="/homes/{{home._id}}" class="thumbnail-anchor">
+						<div class="img-thumbnail">
+							<img src="{{home.image}}">
+							<div class="caption">
+			                    <h5><strong>${{home.cost_per_day}}	 {{home.name | slice: 0 : 30}}</strong></h5>
+			                    <p *ngIf="home.room_type == 'entire-home'">Entire Home &middot; {{home.bedrooms}} bedrooms &middot; {{home.beds}} beds</p>
+			                    <p *ngIf="home.room_type == 'private-room'">Private Room &middot; {{home.bedrooms}} bedrooms &middot; {{home.beds}} beds</p>
+			                    <p *ngIf="home.room_type == 'shared-room'">Shared Room &middot; {{home.bedrooms}} bedrooms &middot; {{home.beds}} beds</p>
+			                </div>
+						</div>
+					</a>
+				</div>
+			</div>	
+		</div>
+
+		
+			<div class="row text-center display-flex"  id="campground-grid">
+				<div class="col-lg-6 col-md-6 col-sm-6" *ngFor="let home of homes | homefilter: filter | paginate: { itemsPerPage: 10, currentPage: p }">
+					<div *ngIf="home === -1" id="empty">
+						<h4>No matches</h4>
+					</div>
+					<a *ngIf="home !== -1" href="/homes/{{home._id}}" class="thumbnail-anchor">
+						<div class="img-thumbnail">
+							<img src="{{home.image}}">
+							<div class="caption">
+			                    <h5><strong>${{home.cost_per_day}}	 {{home.name | slice: 0 : 30}}</strong></h5>
+			                    <p *ngIf="home.room_type == 'entire-home'">Entire Home &middot; {{home.bedrooms}} bedrooms &middot; {{home.beds}} beds</p>
+			                    <p *ngIf="home.room_type == 'private-room'">Private Room &middot; {{home.bedrooms}} bedrooms &middot; {{home.beds}} beds</p>
+			                    <p *ngIf="home.room_type == 'shared-room'">Shared Room &middot; {{home.bedrooms}} bedrooms &middot; {{home.beds}} beds</p>
+			                </div>
+						</div>
+					</a>
+				</div>
+			</div>	
+
+
+		<div style="text-align: center">
+			<pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+		</div>
+	</div>
+	
+
+</div>

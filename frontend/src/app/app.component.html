@@ -1,0 +1,66 @@
+<div *ngIf="dataIsLoaded === true">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="#"><h3>fairbnb</h3></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarToggler">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/homes">Homes <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <app-search></app-search>
+      </li>
+    </ul>
+    <ul class="navbar-nav navbar-right">
+      <div *ngIf="user; else logBlock">
+        <li class="nav-item">
+            <a class="nav-link" href="/users/{{id}}">{{username}}</a>
+        </li>
+      </div>
+          <li *ngIf="admin === true" class="nav-item">
+            <a class="nav-link" href="/admin">Admin</a>
+          </li>
+        <div *ngIf="user">
+          <li *ngIf="host === false" class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#host" href="">Become a Host</a>
+          </li>
+         <li *ngIf="host === true" class="nav-item">
+            <a class="nav-link" href="/create">Create New Home</a>
+        </li>
+      </div>
+      <ng-template #logBlock>
+         <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#log-in" href="">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#sign-up" href="">Login</a>
+          </li>
+      </ng-template>
+      <div *ngIf="user">
+        <li class="nav-item">
+            <app-logout (logout)="logout($event)"></app-logout>
+        </li>
+      </div>
+    </ul>
+  </div>
+</nav>
+  <router-outlet (logout)="logout($event)"></router-outlet>
+
+<div class="modal fade register-md" id="log-in" role="dialog" aria-labelledby="signUpModal" aria-hidden="true">
+    <app-register (currentUser)="onNotify($event)"></app-register>
+</div>
+
+
+<div class="modal fade login-md" id="sign-up" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+    <app-login (currentUser)="onNotify($event)"></app-login>
+</div>
+
+<div class="modal fade" id="myModal" id="host" tabindex="-1" role="dialog" aria-labelledby="hostModal" aria-hidden="true">
+   <app-host></app-host>
+</div>
+
+</div>
+

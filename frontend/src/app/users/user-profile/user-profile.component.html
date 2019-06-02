@@ -1,0 +1,78 @@
+<div *ngIf="dataIsLoaded === true" class="container">
+	<div class="row" id="first">
+		<div class="col-md-4 col-sm-12">
+			<div class="container" id="photo">
+				<img src="{{user.image}}" class="rounded">		
+			</div>
+			<div id="accordion" role="tablist" aria-multiselectable="true">
+			  <div class="card">
+			    <div class="card-header" role="tab" id="headingOne">
+			      <h5 class="mb-0">
+			        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseInfo" aria-expanded="true" aria-controls="collapseInfo">
+			          Contact Information
+			        </a>
+			      </h5>
+			    </div>
+
+			    <div id="collapseInfo" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+			      <div class="card-block">
+			        <h5 class="info">Email: {{user.email}}</h5>
+			        <hr>
+			        <h5 class="info">Phone: {{user.phone}}</h5>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<div *ngIf="compareIds() == 2">
+				<a class="btn btn-primary" href="/users/{{id}}/edit">Edit Profile</a>
+			</div>
+  		</div>
+		<div class="col-md-8 col-sm-12">
+			<h2><strong>{{user.firstname}} {{user.lastname}}</strong></h2>
+			<h5><strong>{{user.city}}<span *ngIf="user.city && user.country">, </span>{{user.country}}</strong></h5>
+			<p>{{user.description}}</p>
+		</div>
+	</div>
+
+	<div *ngIf="compareIds() == 2 && host && !hasNoHousings()">
+		<h3><strong>Your Housings</strong></h3>
+		<div class="row" id="hosted">
+			<div class="col-sm-6 col-md-4 col-lg-3 mt-4" *ngFor="let house of user.hosting | paginate: { itemsPerPage: 4, currentPage: p1, id: 'h' }">
+	            <div class="card card-inverse card-info">
+	                <a href="homes/{{house._id}}"><img class="card-img-top" src="{{house.image}}" alt="House Image"></a>
+	                <div class="card-block">
+	                    <h4 class="card-title">{{house.name | slice: 0 : 30 }}</h4>
+	                    <div class="card-text">{{house.city}}, {{house.country}}</div>
+	                </div>
+	                <div class="card-footer">
+	                	<a class="btn btn-primary btn-sm" href="/homes/{{house._id}}/edit" role="button">Edit House</a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div style="text-align: center; margin: 0 auto;">
+			<pagination-controls class="my-pagination" (pageChange)="p1 = $event" id="h"></pagination-controls>
+		</div>
+	</div>
+
+	<div *ngIf="compareIds() == 2 && visitor">
+		<h3><strong>Places you have visited</strong></h3>
+		<div class="row">
+			<div class="col-sm-6 col-md-4 col-lg-3 mt-4" *ngFor="let house of user.visited | paginate: { itemsPerPage: 4, currentPage: p2, id: 'r' }">
+	            <div  class="card card-inverse card-info">
+	                <a href="homes/{{house._id}}"><img class="card-img-top" src="{{house.image}}" alt="House Image"></a>
+	                <div class="card-block">
+	                    <h4 class="card-title">{{house.name | slice: 0 : 30}}</h4>
+	                    <div class="card-text">{{house.city}}, {{house.country}}</div>
+	                </div>
+	                <div class="card-footer">
+	                	<a [class.disabled]="alreadyRated(house)" class="btn btn-primary btn-sm" href="/homes/{{house._id}}/rate" role="button">Rate House</a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div style="text-align: center; margin: 0 auto;">
+			<pagination-controls class="my-pagination" (pageChange)="p1 = $event" id="h"></pagination-controls>
+		</div>
+	</div>
+</div>

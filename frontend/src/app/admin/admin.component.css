@@ -1,0 +1,58 @@
+.body-container {
+	margin-top: 100px;
+	margin-bottom: 30px;
+}
+
+a {
+	color: rgba(0, 0, 0 , 0.5);
+}
+
+img {
+	height: 120px;
+	width: 120px;
+	object-fit: cover;
+}
+
+.tab-pane {
+	margin-top: 20px;
+}
+
+.card{
+	margin: 10px 10px;
+}
+
+.card-container {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.date-span {
+	margin-left: 10px;
+}
+
+.card a, .card a:hover, .card a:active {
+	color: black;
+	text-decoration: none;
+}
+
+.btn-danger:hover, .btn-danger:active {
+	color: #dc3545;
+	border-color: #dc3545;
+	background-color: white;
+}
+
+.card.hidden {
+	display: none;
+}
+
+.empty{
+	padding-top: 10% !important;
+	padding-bottom: 50% !important; 
+	color: rgba(0, 0, 0, 0.5) !important;	
+}
+
+#empty{
+	padding-top: 10%;
+	padding-bottom: 50%; 
+	color: rgba(0, 0, 0, 0.5);	
+}

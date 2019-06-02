@@ -1,0 +1,190 @@
+// var cosine = require('compute-cosine-distance');
+var cosine = require( 'compute-cosine-similarity' );
+
+class Vector {
+  /**
+   * Construct a vector consisting of binary components where truthy values represent 1 and falsy values represent 0.
+   *
+   * @param {Array<number>} [cs=[]] The components of the vector.
+   *
+   * @example
+   * const v = Vector([1, 0, 1]);
+   */
+  constructor(cs = []) {
+    const l = this.l = cs.length;
+    const c = this.c = [];
+    const s = this.s = 30;
+
+    let i = 0;
+
+    while (i < l) {
+      const n = i + s > l ? l - i : s;
+
+      let e = 0;
+
+      for (let j = 0; j < n; j++) {
+        e |= (cs[i + j] ? 1 : 0) << (n - j - 1);
+      }
+
+      c[c.length] = e;
+      i += n;
+    }
+  }
+
+  /**
+   * Get the number of components in this vector.
+   *
+   * @memberof Vector
+   * @return {number} The number of components in this vector.
+   *
+   * @example
+   * const v = Vector([1, 0, 0, 1]);
+   * v.size();
+   * // => 4
+   */
+  size() {
+    return this.l;
+  }
+
+  /**
+   * Get the component at the specified index of this vector.
+   *
+   * @param {number} i The index of the component to get.
+   * @return {number} The component at the index if found, otherwise `undefined`.
+   *
+   * @example
+   * const v = Vector([1, 0, 1, 1]);
+   * v.get(0);
+   * // => 1
+   */
+  get(i) {
+    const {l, c, s} = this;
+
+    if (i < 0 || i >= l) {
+      return;
+    }
+
+    const d = i / s | 0;
+    const j = d * s;
+    const p = j + s > l ? l - j : s;
+
+    return (c[d] >> (p - (i % s) - 1)) & 1;
+  }
+
+  /**
+   * Compupte the hash of this vector.
+   *
+   * @return {number} The hash of this vector.
+   */
+  hash() {
+    const {c} = this;
+
+    let b = 7;
+
+    for (let i = 0, n = c.length; i < n; i++) {
+      b ^= (31 * b) + c[i] + (b << 6) + (b >> 2);
+    }
+
+    return b ^ (b >> 32);
+  }
+
+  /**
+   * Check if this vector is equal to another.
+   *
+   * @param {Vector} v The vector to check against.
+   * @return {boolean} `true` if the vectors are equal, otherwise `false`.
+   */
+  equals(v) {
+    if (this.l !== v.l) {
+      return false;
+    }
+
+    const {c} = this;
+
+    for (let i = 0, n = c.length; i < n; i++) {
+      if (c[i] !== v.c[i]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  /**
+   * Return a string representation of this vector.
+   *
+   * @return {string} The string representation of the vector.
+   */
+  toString() {
+    let s = 'Vector[';
+
+    for (let i = 0, n = this.l; i < n; i++) {
+      s += this.get(i);
+    }
+
+    return s + ']';
+  }
+
+  toArray() {
+    let array = new Array();
+    for (let i = 0, n = this.l; i < n; i++) {
+       array[i] = this.get(i);
+    }
+    return array;
+  }
+  /**
+   * Compute the distance between two vectors.
+   *
+   * @see http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan
+   *
+   * @param {Vector} u
+   * @param {Vector} v
+   * @return {number}
+   */
+  static distance(u, v) {
+    // let d = 0;
+
+    var vec1 = u.toArray();
+    var vec2 = v.toArray();
+
+    var d = cosine( vec1, vec2);
+
+//     var x = [ 0, 0, 0, 0, 0 ],
+//     y = [ 3, 21, 2, 5, 14 ];
+ 
+// var s = cosine( x, y );
+//  console.log("jsjsjs " + s);
+
+    // for (let i = 0, n = u.c.length; i < n; i++) {
+      // console.log("u " + u);
+      // console.log("u string" + u.toString());
+      // console.log("u array" + u.toArray());
+      
+      // console.log("uc[i] json " + JSON.stringify(u.c[i]));
+      // let x = u.c[i] ^ v.c[i];
+      // console.log("x " + x);
+
+      // for (d; x; d++) {
+      //   x &= x - 1;
+      // }
+    return d;
+  }
+
+  /**
+   * Construct a random vector of a given length.
+   *
+   * @param {number} l
+   * @return {Vector}
+   */
+  static random(l) {
+    const c = new Array(l);
+
+    for (let i = 0; i < l; i++) {
+      c[i] = (Math.random() + 0.5) | 0;
+    }
+
+    return new Vector(c);
+  }
+}
+
+module.exports = Vector;
