@@ -44,7 +44,7 @@
     "jsonwebtoken": "^8.0.0",
     "jstoxml": "^0.2.4",
     "method-override": "^2.3.9",
-    "mongoose": "^4.11.10",
+    "mongoose": "^5.7.7",
     "ng2-google-place-autocomplete": "^1.4.2",
     "ngx-flash-messages": "^1.0.4",
     "ngx-pagination": "^3.0.1",
