@@ -83,7 +83,7 @@
     "karma-webpack": "^2.0.3",
     "less": "^2.7.1",
     "less-loader": "^4.0.3",
-    "node-sass": "^4.5.0",
+    "node-sass": "^7.0.0",
     "phantomjs-prebuilt": "^2.1.14",
     "protractor": "^5.1.1",
     "raw-loader": "0.5.1",
